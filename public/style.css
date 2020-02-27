@@ -1,0 +1,20 @@
+body {
+   background: lightskyblue;
+}
+
+ul {
+   list-style: none;
+}
+
+.wrap {
+   width: 50%;
+   
+   margin: 0 auto;
+   text-align: center;
+}
+
+.showHistory {
+   border: 1px solid green;
+   height: 500px;
+   overflow: scroll;
+}
