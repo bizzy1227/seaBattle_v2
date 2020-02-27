@@ -1,11 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 let seaBattle = require('./seaBattle');
-const { Router } = require('express');
 const path = require('path');
 const ShotItem = require('./model');
-const router = Router();
-
 
 const PORT = 3000;
 
@@ -33,6 +30,13 @@ startWork();
 app.get('/', async (req, res) => {
    try {
       res.sendfile(__dirname + '/index.html');
+   } catch (error) {
+      console.log(error);
+   }
+});
+
+app.get('/getDoc', async (req, res) => {
+   try {
       const items = await ShotItem.find({});
       res.send(JSON.stringify(items));
    } catch (error) {

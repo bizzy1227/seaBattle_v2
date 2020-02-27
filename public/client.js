@@ -46,11 +46,20 @@ $(function () {
       };
    });
 
-   // xhr.open('GET', '/');
-   // xhr.responseType = 'json';
-   // xhr.send();
-   // xhr.onload = function () {
-   //    const shotList = xhr.response;
-   //    console.log(shotList);
-   // };
+   xhr.open('GET', '/');
+   xhr.send();
+   xhr.onload = function () {
+      const html = xhr.response;
+      xhr.open('GET', '/getDoc');
+      xhr.responseType = 'json';
+      xhr.send();
+      xhr.onload = function () {
+         const shotList = xhr.response;
+         console.log(shotList);
+         for (let i = 0; i < shotList.length; i++) {
+            $('.showHistory').append($('<p>' + shotList[i].text + '</p>'));
+         }
+      };
+      console.log(html);
+   };
 });
