@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 let seaBattle = require('./seaBattle');
 const path = require('path');
 const ShotItem = require('./model');
+// requier for tests---------------------------
+const bodyParser = require('body-parser');
 
 const PORT = 3000;
 
@@ -11,6 +13,15 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: 'application/json' }));
+app.use(express.json());
+app.use(function (req, res, next) {
+   res.header('Content-Type', 'application/json');
+   next();
+});
 
 async function startWork () {
    try {
@@ -91,3 +102,5 @@ app.delete('/', async (req, res) => {
       console.log(error);
    }
 });
+
+module.exports = app;

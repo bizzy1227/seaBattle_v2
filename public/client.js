@@ -25,6 +25,7 @@ $(function () {
       data.x = X;
       data.y = Y;
       const json = JSON.stringify(data);
+      console.log(json);
       xhr.responseType = 'json';
       xhr.send(json);
       xhr.onload = function () {
